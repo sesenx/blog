@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% csrf_token %}
+{% load crispy_forms_tags %}
+<h3>ARTICLES</h3>
+<form>
+    <input type="text" name="keyword" class="input-sm" placeholder="Search...">
+    <button type="submit" class="btn btn-danger"> Search</button>
+</form>
+
+<hr>
+{% if articles %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Author</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for article in articles %}
+     <tr>
+      <td>{{article.id}}</td>
+      <td><a href="/article/article/{{article.id}}">{{article.title}}</a></td>
+       <td>{{article.content|safe|truncatewords:10}}</td>
+      <td>{{article.author.username}}</td>
+      <td>{{article.created_date}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="alert alert-danger">
+    There is no articles on this blog
+</div>
+{% endif %}
+{% endblock body %}

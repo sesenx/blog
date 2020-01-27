@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<h3>ABOUT</h3>
+<hr>
+Modele Django du yg blog
+
+
+<hr>
+passage de text a pendant render: <br>
+number1={{number1}} <br>
+number2={{number2}} <br>
+
+<hr>
+passage avec condition: <br>
+{% if number1 == 20 %}
+    <p>number1 est egale a 20</p>
+{% else %}
+    <p>number1 n'est pas 20</p>
+{% endif %}
+
+<hr>
+passage avec loop for : <br>
+{% for number in numbers %}
+    <li>{{number}}</li>
+{% endfor %}
+
+
+{% endblock body %}
